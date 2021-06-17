@@ -1,0 +1,6 @@
+---
+# vars file for codedeploy (https://docs.aws.amazon.com/pt_br/codedeploy/latest/userguide/resource-kit.html#resource-kit-bucket-names)
+
+packages: [ ruby, wget, telnet ]
+bucket_name: "aws-codedeploy-us-east-1"
+region_identifier: "us-east-1"

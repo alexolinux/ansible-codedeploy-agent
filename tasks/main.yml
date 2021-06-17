@@ -1,0 +1,55 @@
+---
+# tasks file for codedeploy
+#
+# -- Update SO
+- name: upgrade all packages
+  yum:
+    name: '*'
+    state: latest
+  tags: [ yum_update_all ]
+
+#-- Set Local Timezone
+- name: set timezone to Brazil
+  timezone:
+    name: America/Sao_Paulo
+  tags: [ set_timezone ]
+
+#-- Copies files to remote locations
+- copy:
+    src: codedeploy-uninstall.sh
+    dest: /tmp/codedeploy-uninstall.sh
+    owner: root
+    group: root
+    mode: 0755
+  tags: [ copy_uninstall_script ]
+
+#-- Execute Uninstall current codedeploy script
+- name: execute uninstall script
+  command: bash /tmp/codedeploy-uninstall.sh
+  tags: [ execute_uninstall_script ]
+
+#-- PreReqs Installation
+- name: Install prereqs for codedeploy-agent
+  yum:
+    name: "{{ packages }}"
+  tags: [ install_prereqs ]
+
+#-- Getting codedeploy package
+- name: Download install script
+  get_url:
+    url: 'https://{{ bucket_name }}.s3.{{ region_identifier }}.amazonaws.com/latest/install'
+    dest: /tmp/install
+    mode: '0755'
+  tags: [ download_install_script ]
+
+#-- Execute codeploy Installation script
+- name: execute install script
+  command: /tmp/install auto
+  tags: [ execute_install_script ]
+
+#-- start codedeploy daemon
+- name: Start codedeploy-agent
+  ansible.builtin.service:
+    name: codedeploy-agent
+    state: started
+  tags: [ start_codedeploy_agent ]
