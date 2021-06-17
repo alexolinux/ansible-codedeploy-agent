@@ -1,31 +1,34 @@
-Role Name
+Role codedeploy-agent
 =========
 
-A brief description of the role goes here.
+Installs codedeploy-agent in ec2 instances (Amazon Linux 2)
+
+Originally by AWS Docs: https://docs.aws.amazon.com/codedeploy/latest/userguide/codedeploy-agent-operations-install-linux.html
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+The requirements are filled by task 'prereqs'
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+Settable variables for this role should changed in vars/main.yml:
+Used by URL binary link: https://bucket-name.s3.region-identifier.amazonaws.com/latest/install
+- bucket_name: The name of the Amazon S3 bucket that contains the CodeDeploy Resource Kit files for your region.
+- region_identifier: The identifier for your region.
+*For a list of bucket names and region identifiers, see Resource kit bucket names by Region:
+  *https://docs.aws.amazon.com/codedeploy/latest/userguide/resource-kit.html#resource-kit-bucket-names
 
-Dependencies
-------------
-
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
 
 Example Playbook
 ----------------
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
-    - hosts: servers
+    - hosts: aws_server
       roles:
-         - { role: username.rolename, x: 42 }
+         - ansible-codedeploy-agent
 
 License
 -------
@@ -35,4 +38,4 @@ BSD
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Alex Mendes https://www.linkedin.com/in/mendesalex/
