@@ -1,7 +1,7 @@
 Role codedeploy-agent
 =========
 
-Installs codedeploy-agent in ec2 instances (Amazon Linux 2)
+Install codedeploy-agent in ec2 instances (Amazon Linux 2)
 
 Originally by AWS Docs: https://docs.aws.amazon.com/codedeploy/latest/userguide/codedeploy-agent-operations-install-linux.html
 
