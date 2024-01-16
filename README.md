@@ -19,7 +19,7 @@ Used by URL binary link: https://bucket-name.s3.region-identifier.amazonaws.com/
 - region_identifier: The identifier for your region.
 For a list of bucket names and region identifiers, see Resource kit bucket names by Region:
 
-- https://docs.aws.amazon.com/codedeploy/latest/userguide/resource-kit.html#resource-kit-bucket-names
+> https://docs.aws.amazon.com/codedeploy/latest/userguide/resource-kit.html#resource-kit-bucket-names
 
 
 Example Playbook
